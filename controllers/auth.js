@@ -7,7 +7,7 @@ const JWT_SECRET = process.env.JWT_SECRET;
 
 exports.signup = async (req, res, next) => {
     try{
-        const { email, password, firstname, lastname } = req.body;
+        const { email, password, firstname, lastname, contact, state, country, pincode } = req.body;
         const userPresent = await User.findOne({email: email});
         if(userPresent){
             const error = new Error('User already exists. Try with differnt email or username');
@@ -21,6 +21,10 @@ exports.signup = async (req, res, next) => {
             username: username,
             email: email,
             password: hashedPassword,
+            contact: contact,
+            state: state,
+            country: country,
+            pincode: pincode,
         });
         await user.save();
         res.status(201).json({message: 'User created'});

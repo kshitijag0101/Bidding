@@ -19,10 +19,21 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    role: {
+    country: {
         type: String,
-        enum: ['user', 'admin'],
-        default: 'user'
+        required: true,
+    },
+    state: {
+        type: String,
+        required: true,
+    },
+    pincode: {
+        type: Number,
+        required: true,
+    },
+    contact: {
+        type: Number,
+        required: true,
     },
 })
 
