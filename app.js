@@ -3,6 +3,8 @@ require("dotenv").config()
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
+const authRoutes = require("./routes/auth");
+const bidRoutes = require("./routes/bidding");
 
 const MONGODB_URL = process.env.MONGODB_URL;
 
@@ -15,6 +17,9 @@ app.use(cors({
     allowedHeaders: ['Content-Type', 'Authorization'],
     origin: ['http://localhost:3000']
 }));
+
+app.use('/auth', authRoutes);
+app.use('/', bidRoutes);
 
 app.use((error, req, res, next) => {
     console.log(error);
